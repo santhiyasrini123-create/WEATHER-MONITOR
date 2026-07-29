@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Portal - SkyIntel Weather</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animation.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+
+    <!-- Loader -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Loading Portal Details...</div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="navbar">
+            <a href="index.html" class="brand">
+                <div class="brand-logo">
+                    <svg viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="30" fill="var(--sky-blue)" opacity="0.6"/>
+                        <path d="M35 65 A12 12 0 0 1 45 45 A18 18 0 0 1 75 47 A15 15 0 0 1 85 65 Z" fill="white"/>
+                    </svg>
+                </div>
+                <div class="brand-title">SkyIntel</div>
+            </a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                    <li><a href="location.html" class="nav-link">Location</a></li>
+                    <li><a href="forecast.html" class="nav-link">Forecast</a></li>
+                    <li><a href="alerts.html" class="nav-link">Alerts</a></li>
+                    <li><a href="maps.html" class="nav-link">Maps</a></li>
+                    <li><a href="reports.html" class="nav-link">Reports</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">
+                    <svg class="sun-icon" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM2 12h2m16 0h2M12 2v2m0 16v2m-6.4-15.6 1.4 1.4m10 10 1.4 1.4M5.6 18.4l1.4-1.4m10-10 1.4-1.4" stroke="currentColor" stroke-width="2"/></svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/></svg>
+                </button>
+
+                <div class="nav-auth">
+                    <a href="login.html" class="btn btn-secondary" style="padding: 8px 16px;">Login</a>
+                </div>
+
+                <a href="#" class="nav-user-profile" id="user-profile-menu">
+                    <div class="nav-user-avatar" id="nav-avatar">U</div>
+                    <span id="profile-name">User</span>
+                    <span onclick="window.logout()" style="margin-left:8px;font-size:0.8rem;color:var(--text-muted);cursor:pointer">Logout</span>
+                </a>
+
+                <button class="hamburger" aria-label="Toggle Navigation Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container" style="padding-top: 120px; padding-bottom: 60px;">
+        
+        <div class="animate-fade-in" style="margin-bottom: 50px;">
+            <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 6px;">About SkyIntel</h1>
+            <p style="color: var(--text-secondary);">Project architecture objectives, structural components, and system modules.</p>
+        </div>
+
+        <!-- 1. Mission & Vision Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px;">
+            <div class="glass-panel animate-slide-up" style="padding: 40px;">
+                <span style="font-size: 2.5rem; display:block; margin-bottom: 15px;">🎯</span>
+                <h2 style="font-size: 1.4rem; margin-bottom: 12px;">Our Mission</h2>
+                <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">To design an accessible, reliable, zero-latency meteorological platform that streamlines forecasting overlays and hazard detection to mitigate physical damages.</p>
+            </div>
+
+            <div class="glass-panel animate-slide-up delay-1" style="padding: 40px;">
+                <span style="font-size: 2.5rem; display:block; margin-bottom: 15px;">🔭</span>
+                <h2 style="font-size: 1.4rem; margin-bottom: 12px;">Our Vision</h2>
+                <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">To create hyper-localized satellite models powered entirely by standard browser rendering, giving emergency response managers prompt warnings.</p>
+            </div>
+        </div>
+
+        <!-- 2. Problem Statement -->
+        <div class="glass-panel animate-slide-up" style="padding: 40px; margin-bottom: 50px;">
+            <h2 style="font-size: 1.6rem; margin-bottom: 16px;">Problem Statement</h2>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 15px; font-size: 0.95rem;">
+                Traditional weather dashboards suffer from laggy telemetry streams, complex layouts, and inadequate hazard alert pathways. In critical conditions such as floods or cyclone formations, citizen channels receive warnings too late, risking loss of life and property.
+            </p>
+            <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
+                SkyIntel addresses this by combining optimized client-side telemetry updates, dedicated severe alarm centers with blinking visuals, and historical canvas analytics dashboards.
+            </p>
+        </div>
+
+        <!-- 3. Actors Involved -->
+        <h2 style="font-size: 1.6rem; margin-bottom: 24px;" class="animate-fade-in">System Actors</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 50px;">
+            <div class="glass-panel animate-zoom-in" style="padding: 30px; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 15px;">👤</div>
+                <h3 style="font-size: 1.15rem; margin-bottom: 8px;">Standard Citizen (User)</h3>
+                <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5;">Views daily metrics, creates saved cities checklists, checks 7-day outlooks, and receives active hazard notification popups.</p>
+            </div>
+
+            <div class="glass-panel animate-zoom-in delay-1" style="padding: 30px; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 15px;">🔬</div>
+                <h3 style="font-size: 1.15rem; margin-bottom: 8px;">Meteorological Agency</h3>
+                <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5;">Maintains high-fidelity sensor feeds, uploads isobar data overlays, and triggers severe cyclone/storm warnings.</p>
+            </div>
+
+            <div class="glass-panel animate-zoom-in delay-2" style="padding: 30px; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 15px;">🛡️</div>
+                <h3 style="font-size: 1.15rem; margin-bottom: 8px;">System Administrator</h3>
+                <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5;">Monitors server metrics, maintains login databases, handles profiles, and audits canvas summaries.</p>
+            </div>
+        </div>
+
+        <!-- 4. System Benefits & Timeline -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <div class="glass-panel animate-slide-right" style="padding: 40px;">
+                <h2 style="font-size: 1.4rem; margin-bottom: 20px;">Portal Benefits</h2>
+                <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; color: var(--text-secondary); font-size: 0.95rem;">
+                    <li>✓ High performance rendering: no external heavy modules</li>
+                    <li>✓ Dynamic animations: moving clouds, rain streams and sun</li>
+                    <li>✓ Glassmorphic UI tailored for modern dark mode screens</li>
+                    <li>✓ Local data persistent configuration using client caches</li>
+                </ul>
+            </div>
+
+            <div class="glass-panel animate-slide-left" style="padding: 40px;">
+                <h2 style="font-size: 1.4rem; margin-bottom: 20px;">Future Enhancements</h2>
+                <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; color: var(--text-secondary); font-size: 0.95rem;">
+                    <li>➔ Interactive GIS geolocation with live coordinate streams</li>
+                    <li>➔ Machine Learning models to auto-estimate humidity curves</li>
+                    <li>➔ SMS/Email alerts routing directly to emergency centers</li>
+                    <li>➔ Weather radar satellite photo uploads pipeline</li>
+                </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom" style="border: none; padding: 0; text-align: center;">
+                <div>&copy; 2026 SkyIntel Weather Monitoring. All rights reserved.</div>
+                <div>Registration Numbers: <strong>24MIS0228</strong> &amp; <strong>24MIS0244</strong></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Global Javascript Inclusions -->
+    <script src="js/script.js"></script>
+</body>
+</html>
