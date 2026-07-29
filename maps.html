@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar Maps - SkyIntel Weather</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="animation.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+
+    <!-- Loader -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Loading Radar Feeds...</div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="navbar">
+            <a href="index.html" class="brand">
+                <div class="brand-logo">
+                    <svg viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="30" fill="var(--sky-blue)" opacity="0.6"/>
+                        <path d="M35 65 A12 12 0 0 1 45 45 A18 18 0 0 1 75 47 A15 15 0 0 1 85 65 Z" fill="white"/>
+                    </svg>
+                </div>
+                <div class="brand-title">SkyIntel</div>
+            </a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                    <li><a href="location.html" class="nav-link">Location</a></li>
+                    <li><a href="forecast.html" class="nav-link">Forecast</a></li>
+                    <li><a href="alerts.html" class="nav-link">Alerts</a></li>
+                    <li><a href="maps.html" class="nav-link">Maps</a></li>
+                    <li><a href="reports.html" class="nav-link">Reports</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">
+                    <svg class="sun-icon" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM2 12h2m16 0h2M12 2v2m0 16v2m-6.4-15.6 1.4 1.4m10 10 1.4 1.4M5.6 18.4l1.4-1.4m10-10 1.4-1.4" stroke="currentColor" stroke-width="2"/></svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/></svg>
+                </button>
+
+                <div class="nav-auth">
+                    <a href="login.html" class="btn btn-secondary" style="padding: 8px 16px;">Login</a>
+                </div>
+
+                <a href="#" class="nav-user-profile" id="user-profile-menu">
+                    <div class="nav-user-avatar" id="nav-avatar">U</div>
+                    <span id="profile-name">User</span>
+                    <span onclick="window.logout()" style="margin-left:8px;font-size:0.8rem;color:var(--text-muted);cursor:pointer">Logout</span>
+                </a>
+
+                <button class="hamburger" aria-label="Toggle Navigation Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container" style="padding-top: 120px; padding-bottom: 60px;">
+        
+        <div class="animate-fade-in" style="margin-bottom: 30px;">
+            <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 6px;">Satellite &amp; Radar Maps</h1>
+            <p style="color: var(--text-secondary);">Animated interactive weather tracking models (Rainfall, Temp, Wind speed, and Clouds).</p>
+        </div>
+
+        <div class="maps-grid">
+            
+            <!-- Rainfall Map -->
+            <div class="map-card glass-panel animate-zoom-in" onclick="window.showNotification('Radar Action', 'Rainfall model map zoomed.', 'info')">
+                <!-- Visual Map Layout (Custom SVG contours to avoid placeholder gaps) -->
+                <div class="map-img-placeholder" style="background: radial-gradient(circle at 30% 40%, rgba(0, 114, 255, 0.4) 0%, rgba(11, 15, 25, 0.9) 70%), linear-gradient(135deg, #0b0f19, #1e1b4b);">
+                    <svg viewBox="0 0 200 200" style="width:100%; height:100%; opacity: 0.2;" stroke="var(--sky-blue)" fill="none" stroke-width="1">
+                        <circle cx="80" cy="80" r="50" class="cloud-drift-1"/>
+                        <circle cx="80" cy="80" r="70" class="cloud-drift-1" style="animation-delay: -5s;"/>
+                        <path d="M 0,100 Q 50,70 100,100 T 200,100" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="map-overlay-layer"></div>
+                <div class="map-card-header">
+                    <span class="map-card-title">Precipitation Radar</span>
+                    <span class="badge" style="background: rgba(0, 198, 255, 0.2); color: var(--sky-blue); font-weight: 700;">Rainfall</span>
+                </div>
+                <div class="map-card-controls">
+                    <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;">Zoom In</button>
+                    <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;">Timeline Play</button>
+                </div>
+            </div>
+
+            <!-- Temperature Map -->
+            <div class="map-card glass-panel animate-zoom-in delay-1" onclick="window.showNotification('Radar Action', 'Temperature model map zoomed.', 'info')">
+                <div class="map-img-placeholder" style="background: radial-gradient(circle at 70% 30%, rgba(255, 65, 108, 0.4) 0%, rgba(11, 15, 25, 0.9) 70%), linear-gradient(135deg, #0f172a, #120e2e);">
+                    <svg viewBox="0 0 200 200" style="width:100%; height:100%; opacity: 0.25;" stroke="var(--orange)" fill="none" stroke-width="1">
+                        <circle cx="120" cy="80" r="40" class="sun-glow"/>
+                        <circle cx="120" cy="80" r="60" class="sun-glow" style="animation-delay: -2s;"/>
+                        <path d="M 0,140 Q 50,160 100,120 T 200,150" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="map-overlay-layer"></div>
+                <div class="map-card-header">
+                    <span class="map-card-title">Thermal Isobars</span>
+                    <span class="badge" style="background: rgba(255, 65, 108, 0.2); color: var(--orange); font-weight: 700;">Temperature</span>
+                </div>
+                <div class="map-card-controls">
+                    <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;">Zoom In</button>
+                    <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;">Isotherm Overlay</button>
+                </div>
+            </div>
+
+            <!-- Wind Speed Map -->
+            <div class="map-card glass-panel animate-zoom-in delay-2" onclick="window.showNotification('Radar Action', 'Wind streamline model zoomed.', 'info')">
+                <div class="map-img-placeholder" style="background: radial-gradient(circle at 40% 70%, rgba(0, 242, 254, 0.3) 0%, rgba(11, 15, 25, 0.9) 70%), linear-gradient(135deg, #050d1a, #0b1c2e);">
+                    <svg viewBox="0 0 200 200" style="width:100%; height:100%; opacity: 0.3;" stroke="var(--cyan)" fill="none" stroke-width="1.5">
+                        <!-- Streamlines -->
+                        <path d="M 10,20 Q 80,40 180,20" class="wind-sway"/>
+                        <path d="M 10,60 Q 90,80 180,50" class="wind-sway" style="animation-delay: -1s;"/>
+                        <path d="M 10,100 Q 70,120 180,90" class="wind-sway" style="animation-delay: -2s;"/>
+                        <path d="M 10,140 Q 100,160 180,130" class="wind-sway" style="animation-delay: -3s;"/>
+                    </svg>
+                </div>
+                <div class="map-overlay-layer"></div>
+                <div class="map-card-header">
+                    <span class="map-card-title">Wind Streamlines</span>
+                    <span class="badge" style="background: rgba(0, 242, 254, 0.2); color: var(--cyan); font-weight: 700;">Wind Speed</span>
+                </div>
+                <div class="map-card-controls">
+                    <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;">Zoom In</button>
+                    <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;">Vectors Play</button>
+                </div>
+            </div>
+
+            <!-- Cloud Coverage Map -->
+            <div class="map-card glass-panel animate-zoom-in delay-3" onclick="window.showNotification('Radar Action', 'Cloud model map zoomed.', 'info')">
+                <div class="map-img-placeholder" style="background: radial-gradient(circle at 50% 50%, rgba(148, 163, 184, 0.25) 0%, rgba(11, 15, 25, 0.9) 80%), linear-gradient(135deg, #1e293b, #0f172a);">
+                    <svg viewBox="0 0 200 200" style="width:100%; height:100%; opacity: 0.35;" stroke="#f8fafc" fill="rgba(255,255,255,0.03)" stroke-width="1">
+                        <path d="M 30,50 Q 50,20 80,40 T 130,50 T 170,40" class="cloud-drift-1"/>
+                        <path d="M 20,120 Q 60,90 100,110 T 180,100" class="cloud-drift-2" style="animation-delay: -4s;"/>
+                    </svg>
+                </div>
+                <div class="map-overlay-layer"></div>
+                <div class="map-card-header">
+                    <span class="map-card-title">Cloud Cover (Infrared)</span>
+                    <span class="badge" style="background: rgba(255, 255, 255, 0.2); color: var(--white); font-weight: 700;">Clouds</span>
+                </div>
+                <div class="map-card-controls">
+                    <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;">Zoom In</button>
+                    <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;">Sat View</button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom" style="border: none; padding: 0; text-align: center;">
+                <div>&copy; 2026 SkyIntel Weather Monitoring. All rights reserved.</div>
+                <div>Registration Numbers: <strong>24MIS0228</strong> &amp; <strong>24MIS0244</strong></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Global Javascript Inclusions -->
+    <script src="js/script.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
