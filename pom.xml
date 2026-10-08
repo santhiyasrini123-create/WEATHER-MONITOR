@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.weather</groupId>
+    <artifactId>weather-monitor</artifactId>
+    <version>1.0</version>
+
+    <packaging>war</packaging>
+
+    <name>Weather Monitor</name>
+    <description>Weather Monitoring Web Application</description>
+
+    <build>
+
+        <finalName>weather-monitor</finalName>
+
+       <plugins>
+
+    <!-- WAR Build -->
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.4.0</version>
+
+        <configuration>
+            <warSourceDirectory>${project.basedir}</warSourceDirectory>
+
+            <failOnMissingWebXml>false</failOnMissingWebXml>
+
+            <packagingExcludes>
+                pom.xml,
+                app.py,
+                Dockerfile,
+                .git/**,
+                .vscode/**,
+                target/**
+            </packagingExcludes>
+        </configuration>
+    </plugin>
+
+    <!-- JavaScript Tests -->
+    <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.5.0</version>
+
+        <executions>
+            <execution>
+                <id>run-javascript-tests</id>
+                <phase>test</phase>
+                <goals>
+                    <goal>exec</goal>
+                </goals>
+
+                <configuration>
+                    <executable>node</executable>
+                    <arguments>
+                        <argument>--test</argument>
+                        <argument>tests/temperature.test.js</argument>
+                    </arguments>
+                </configuration>
+            </execution>
+        </executions>
+    </plugin>
+
+</plugins>
+
+    </build>
+
+</project>
